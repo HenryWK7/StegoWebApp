@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Steganography - Hide Files in Images</title>
+</head>
+<body>
+    <div class="web-border"></div>
+    <header>
+        <h2 id="title">Steganography: Hiding in Plain Sight</h2>
+    </header>
+
+    <div class="container">
+        <div class="menu">
+            <h3>Menu Options</h3>
+            <button class="menuButton" onclick="showContent('Home')">Home</button>
+            <button class="menuButton" onclick="showContent('encoding-screen')">Encode</button>
+            <button class="menuButton" onclick="showContent('decoding-screen')">Decode</button>
+            <button class="menuButton" onclick="showContent('About')">About</button>
+        </div>
+        <div class="content">
+            <div id="Home">
+                <p>
+                    Image Steganography is a technique used to hide secret data within an image file, such that 
+                    the data is concealed in a way that it is not easily detectable by the human eye. This is 
+                    accomplished by embedding hidden information into the image’s pixels without significantly 
+                    altering the visual appearance of the image.
+                </p>
+                <p>
+                    In image steganography, the most common method is to modify the least significant bits (LSB) 
+                    of the pixel values. In a typical image, each pixel has color values (usually in RGB format: 
+                    Red, Green, Blue), which are represented by numbers. These numbers are often stored in 8 bits,
+                     meaning there are 256 possible values for each color channel. The LSBs of these values are altered 
+                     slightly to store hidden data, such as text, another image, or any other form of binary information.
+                </p>
+                <h2>How it works:</h2>
+                <ol>
+                    <li>
+                        <b>Data Embedding:</b> The secret message is first converted into binary form (a sequence of 0s and 1s). 
+                        These bits are then embedded into the LSBs of the image's pixel color values. Because the least 
+                        significant bit only contributes slightly to the pixel’s color, the changes made by embedding the 
+                        data are usually imperceptible to the human eye.
+                    </li>
+                    <li>
+                        <b>Data Extraction:</b> To retrieve the hidden data, the receiver needs to extract the LSBs from the image 
+                        and reconstruct the original message from those bits.
+                    </li>
+                </ol>
+                <h2>Applications of Image Steganography:</h2>
+                <ul>
+                    <li>
+                        <b>Secure Communication:</b> It is used to secretly transmit sensitive data, ensuring privacy and security.
+                    </li>
+                    <li>
+                        <b>Digital Watermarking:</b> Embedding watermarks into images to assert copyright or ownership.
+                    </li>
+                    <li>
+                        <b>Covert data storage:</b> Hiding information within images to avoid detection, 
+                        especially in sensitive or censored environments.
+                    </li>
+                </ul>
+            </div>
+            <div id =encoding-screen class="hidden">
+                <h2 class="content-heading">Encoding</h2>
+                <h3>Step 1: Choose an Image</h3>
+                <input type="file" id="imageInput" accept="image/png, image/jpeg"><br><br>
+
+                <h3>Step 2: Choose a File to Hide</h3>
+                <input type="file" id="fileInput"><br><br>
+
+                <button onclick="hideFile()">Hide File in Image</button>
+                <br><br>
+
+                <h3>Encoded Image:</h3>
+                <canvas id="canvas" style="display: none;"></canvas>
+                <br>
+                <a id="downloadLink" style="display: none;">Download Encoded Image</a>
+            </div>
+            <div id="decoding-screen" class="hidden">
+                <h2 class="content-heading">Extract File from Image</h2>
+                <input type="file" id="encodedImageInput" accept="image/png"><br><br>
+                <button onclick="extractFile()">Extract Hidden File</button>
+            </div>
+            <div id="About" class="hidden">
+                <h2 class="content-heading">About this Website</h2>
+                <p>I developed this site to showcase a basic implementation of image steganography. This is a
+                    client-side application so none of the images or files selected will be uploaded to a server online. 
+                    All the code runs natively on the browser. Everything will be cleared when the browser tab is closed.
+                </p>
+                <p>This is just a fun site for messing around with hiding secret messages or files inside images. Fair disclaimer: 
+                    If you want to use this to send the image over web through other applications then I can't guarentee that the
+                    integrity of your secret message or file will be preserved. Some platforms like Facebook or Instagram for example 
+                    might do things like image compression, format conversions, resizing, etc. which could affect the encoded image.
+                </p>
+            </div>
+        </div>
+    </div>
+    <footer>© 2025 Henry Kong</footer>
+    <script src="script.js"></script>
+</body>
+</html>
